@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.zerock.b01.domain.Board;
 import org.zerock.b01.domain.BoardImage;
-import org.zerock.b01.dto.BoardListAllDTO;
+import org.zerock.b01.dto.upload.BoardListAllDTO;
 import org.zerock.b01.dto.BoardListReplyCountDTO;
 
 import javax.transaction.Transactional;

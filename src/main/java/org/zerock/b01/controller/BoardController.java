@@ -14,6 +14,7 @@ import org.zerock.b01.dto.BoardDTO;
 import org.zerock.b01.dto.BoardListReplyCountDTO;
 import org.zerock.b01.dto.PageRequestDTO;
 import org.zerock.b01.dto.PageResponseDTO;
+import org.zerock.b01.dto.upload.BoardListAllDTO;
 import org.zerock.b01.service.BoardService;
 
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class BoardController {
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
 //        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
-        PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
+        PageResponseDTO<BoardListAllDTO> responseDTO = boardService.listWithAll(pageRequestDTO);
         log.info(responseDTO);
         model.addAttribute("responseDTO",responseDTO);
     }
@@ -44,7 +45,7 @@ public class BoardController {
         log.info("board POST register.........");
 
         if(bindingResult.hasErrors()) {
-            log.info("has errors......");
+            log.info("has errors.........");
             redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
             return "redirect:/board/register";
         }

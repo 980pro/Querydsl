@@ -1,11 +1,9 @@
-package org.zerock.b01.dto;
+package org.zerock.b01.dto.upload;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Primary;
-import org.zerock.b01.domain.Board;
 
 import java.time.LocalDateTime;
 import java.util.List;

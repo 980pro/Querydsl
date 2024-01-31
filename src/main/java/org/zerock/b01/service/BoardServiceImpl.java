@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.zerock.b01.domain.Board;
 import org.zerock.b01.dto.*;
 import org.springframework.data.domain.Pageable;
+import org.zerock.b01.dto.upload.BoardListAllDTO;
 import org.zerock.b01.repository.BoardRepository;
 
 import javax.transaction.Transactional;
@@ -92,6 +93,17 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public PageResponseDTO<BoardListAllDTO> listWithAll(PageRequestDTO pageRequestDTO){
-        return null;
+
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPageable("bno");
+
+        Page<BoardListAllDTO> result = boardRepository.searchWithAll(types, keyword, pageable);
+
+        return PageResponseDTO.<BoardListAllDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(result.getContent())
+                .total((int)result.getTotalElements())
+                .build();
     }
 }
